@@ -1,0 +1,19 @@
+{
+  "name": "meanauthapp",
+  "version": "1.0.0",
+  "description": "Mean Stack auth app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegrimor/meanauthapp.git"
+  },
+  "author": "Miguel A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegrimor/meanauthapp/issues"
+  },
+  "homepage": "https://github.com/thegrimor/meanauthapp#readme"
+}
