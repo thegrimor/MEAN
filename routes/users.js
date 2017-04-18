@@ -27,7 +27,37 @@ router.post('/register',(req,res,next)=>{
 
 //auth
 router.post('/authenticate',(req,res,next)=>{
-    res.send('authenticate');
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.getUserByUsername (username, (err,user)=>{
+        if (err) throw err;
+        if (!user){
+            return res.json({success:false,msg:'user not found'});
+        }
+
+        User.comparePassword(password,user.password,(err,isMatch)=>{
+            if(err) throw err;
+            if(isMatch){
+                const token = jwt.sing(user,config.secret,{
+                    expiresIn: 604800 // 1 week
+                });
+                res.json({
+                    success:true,
+                    token: 'JWT'+token,
+                    user:{
+                        id:user._id,
+                        name:user.name,
+                        email:user.email
+                    }
+                });
+            }
+            else{
+                return res.json({success:false,msg:'wrong password'});
+            }
+        });
+    });
+
 });
 
 //profile
